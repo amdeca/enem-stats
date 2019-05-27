@@ -9,12 +9,12 @@ class SchoolRow extends Component{
     }
     
     render(){
-        return <div key={this.props.school.id}>
+        return <div key={this.props.school._id}>
                 <h4>
-                    {this.props.school.name}, {this.props.school.uf}
+                    {this.props.school.ESCOLA}, {this.props.school.UF}
                 </h4>
                 <p>
-                    {this.props.school.owner}
+                    {this.props.school.TIPOESCOLA}
                 </p>
                 <input type="button" onClick={this.schoolStats.bind(this)} value="Estatisticas"></input>
       </div>
