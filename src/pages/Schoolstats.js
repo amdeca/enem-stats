@@ -13,7 +13,7 @@ export default class Schoolstats extends Component{
         //const url = "http://enemstats-api.herokuapp.com/api/schools/5ce6eae87e06c8d09d014ee8"
         const response = await fetch(url);
         const data = await response.json();
-        this.setState({ school: data.result[0], loading: false });
+        this.setState({ school: data.results[0], loading: false });
         //console.log(data.result[0])
     }
 
@@ -23,10 +23,14 @@ export default class Schoolstats extends Component{
                 {this.state.loading || !this.state.school ? ( <div>Carregando</div>) : 
                 (
                     <div>
-                        <div>{this.state.school.ESCOLA}</div>
-                        <div>{this.state.school.TIPOESCOLA}</div>
-                        <div>{this.state.school.REGIAO}</div>
-                        <div>{this.state.school.NU_ANO}</div>
+                        <h3>{this.state.school.school_name}</h3>
+                        <h4>{this.state.school.city} - {this.state.school.state}</h4>
+                        <p>{this.state.school.type}</p>
+                        <p>{this.state.school.avg_ch}</p>
+                        <p>{this.state.school.avg_cn}</p>
+                        <p>{this.state.school.avg_lc}</p>
+                        <p>{this.state.school.avg_mt}</p>
+                        <p>{this.state.school.avg_essay}</p>
                     </div>
                 )}
             </div>
