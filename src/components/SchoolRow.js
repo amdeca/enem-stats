@@ -5,7 +5,8 @@ class SchoolRow extends Component{
         //need routing to a page with all the school stats. how?
         //https://www.youtube.com/watch?v=bqSSLr8A8PU&list=PL1J2GubvF0gBkbM3R6PaQu8OY42U9flTI&index=6&t=2353s
         //const url = "http://www.google.com"
-        const url = `/escolas/${this.props.school.id}`
+        //**IMPORTANT** CHECK ROUTES */
+        const url = `/schools/${this.props.school.id}`
         window.location.href = url
     }
     

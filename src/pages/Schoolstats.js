@@ -2,33 +2,33 @@ import React, {Component} from 'react';
 //import api from '../../api/api';
 
 export default class Schoolstats extends Component{
-    state = { school : {} };
+    state = {
+        loading: true,
+        school: null
+    };
 
-    // async componentDidMount(){
-    //     this.newFilesNotification();
-
-    //     const storage = this.props.match.params.id;
-    //     const response = await api.get(`storage/${storage}`);
-    //     this.setState( {storage: response.data });
-    // }    
-
-    // uploadFile = files => {
-    //     files.forEach( file => {
-    //         const data = new FormData();
-    //         const storageId = this.props.match.params.id;
-    //         data.append('file', file);
-    //         api.post(`storage/${storageId}/files`, data);
-    //     });
-    // };
+    async componentDidMount(){
+        const schoolId = window.location.pathname;
+        const url = `https://enemstats-api.herokuapp.com/api${schoolId}`;
+        //const url = "http://enemstats-api.herokuapp.com/api/schools/5ce6eae87e06c8d09d014ee8"
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({ school: data.result[0], loading: false });
+        //console.log(data.result[0])
+    }
 
     render(){
         return (
-            <div id="storage-div">
-                <header>
-                    <h1>{this.state.school.title}</h1>
-                </header>
-                <ul>
-                </ul>
+            <div>
+                {this.state.loading || !this.state.school ? ( <div>Carregando</div>) : 
+                (
+                    <div>
+                        <div>{this.state.school.ESCOLA}</div>
+                        <div>{this.state.school.TIPOESCOLA}</div>
+                        <div>{this.state.school.REGIAO}</div>
+                        <div>{this.state.school.NU_ANO}</div>
+                    </div>
+                )}
             </div>
         );
     }
