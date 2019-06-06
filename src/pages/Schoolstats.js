@@ -1,58 +1,74 @@
 import React, {Component} from 'react';
-//import api from '../../api/api';
-import {Bar} from 'react-chartjs-2';
+import Chart from '../components/Chart';
 
 export default class Schoolstats extends Component{
-    state = {
-        loading: true,
-        school: null
-    };
+    constructor(){
+        super();
+        this.state = {
+          loading: true,
+          school: null,
+          chartData:{}
+        }
+    }
 
-    async componentDidMount(){
+    componentDidMount(){
+        this.getChartData();
+    }
+
+    async getChartData(){
+        // Ajax calls here
         const schoolId = window.location.pathname;
         const url = `https://enemstats-api.herokuapp.com/api${schoolId}`;
-        //const url = "http://enemstats-api.herokuapp.com/api/schools/5ce6eae87e06c8d09d014ee8"
         const response = await fetch(url);
         const data = await response.json();
-        this.setState({ school: data.results[0], loading: false });
+        //console.log(data.results[0].avg_cn)
+        this.setState({ school: data.results[0], loading: false,
+          chartData:{
+            labels: ['Ciências Humanas', 'Ciências Naturais', 'Linguagens', 'Matemática', 'Redação'],
+            datasets:[
+              {
+                label:'Nota',
+                data:[
+                  data.results[0].avg_ch,
+                  data.results[0].avg_cn,
+                  data.results[0].avg_lc,
+                  data.results[0].avg_mt,
+                  data.results[0].avg_essay,
+                ],
+                backgroundColor:[
+                  'rgba(135, 178, 242, 1)',
+                  'rgba(120, 159, 217, 1)',
+                  'rgba(107, 142, 194, 1)',
+                  'rgba(107, 142, 194, 1)',
+                  'rgba(96, 127, 175, 1)'
+                ]
+              }
+            ]
+          }
+        });
     }
 
     render(){
-        return (
+        if (this.state.loading){
+            return <div>Carregando...</div>
+        }
+
+        if(!this.state.chartData){
+            return <div>Escola nao encontrada</div>
+        }
+
+        return(
             <div>
-                {this.state.loading || !this.state.school ? ( <div>Carregando</div>) : 
-                (
-                    <div>
-                        <h1>{this.state.school.year}</h1>
-                        <h3>{this.state.school.school_name}</h3>
-                        <h4>{this.state.school.city} - {this.state.school.state}</h4>
-                        <p>{this.state.school.type}</p>
-                        <p>{this.state.school.avg_ch}</p>
-                        <p>{this.state.school.avg_cn}</p>
-                        <p>{this.state.school.avg_lc}</p>
-                        <p>{this.state.school.avg_mt}</p>
-                        <p>{this.state.school.avg_essay}</p>
-                    </div>
-                )}
+                <div className="school-info">
+                    <h3>{this.state.school.school_name}</h3>
+                    <h4>{this.state.school.city} - {this.state.school.state}</h4>
+                    <p>{this.state.school.type}</p>
+                </div>
+                <div className="year-grades">
+                    <h3>Estatisticas para o ano {this.state.school.year}</h3>
+                    <Chart chartData={this.state.chartData}/>
+                </div>
             </div>
-        );
+        );       
     }
 }
-
-//OBJETIVOS:
-// 1. GRAFICO COM MEDIAS DO ANO SELECIONADO
-// 2. GRAFICO COM HISTORICO DE MEDIAS
-// 3. INCLUIR MEDIA MUNICIPAL, ESTADUAL E NACIONAL
-// 4. SECAO DE DADOS SOCIAIS: % DE RACA E GENERO DA ESCOLA
-
-// PERGUNTAS A SEREM RESPONDIDAS:
-//1. DIFERENCA DE MEDIA ENTRE OS ANOS
-//2. QUAIS SAO OS ESTADOS QUE TEM OS MELHORES ALUNOS E OS PIORES
-//3. HA DIFERENCAS ENTRE MEDIA DE RACAS OU GENEROS?
-//4. MEDIA NACIONAL E DO ESTADO COMPARADO COM A ESCOLA
-//5. MEDIA ESCOLA PUBLICA VERSUS ESCOLA PRIVADA
-
-// <div key={this.props.school.id}>
-//                 <h4>{this.props.school.name}, {this.props.school.state}</h4>
-//                 <p>{this.props.school.type}</p>
-//             </div>
