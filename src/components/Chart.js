@@ -1,53 +1,58 @@
 import React, {Component} from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import {Radar} from 'react-chartjs-2';
+
+// Default chart parameters
+const options = {
+  
+  legend: {
+    display: true,
+    position: 'top'
+  },
+  scale: {
+    reverse: false,
+    ticks: {
+      beginAtZero: true,
+      min: 450,
+      max: 800,
+      stepSize: 40
+    },
+    legend:{
+      display: true,
+      position:'left'
+    },
+    maintainAspectRatio: false
+  }
+}
 
 class Chart extends Component{
   constructor(props){
     super(props);
     this.state = {
-      chartData: props.chartData
+      chartData: props.chartData,
     }
   }
 
-//   static defaultProps = {
-//     displayTitle:true,
-//     displayLegend: true,
-//     legendPosition:'right',
-//     location:'City'
-//   }
+  // static defaultProps = {
+  //   displayTitle:true,
+  //   displayLegend: true,
+  //   legendPosition:'right',
+  //   // location:'City'
+  // }
 
   render(){
     return (
-      <div className="chart">
-        <Bar
-          data={this.state.chartData}
-          options={{
-            title:{
-              display:this.props.displayTitle,
-              text:'Largest Cities In '+this.props.location,
-              fontSize:25
-            },
-            legend:{
-              display:this.props.displayLegend,
-              position:this.props.legendPosition
-            }
-          }}
-        />
+      <div>
+      <Radar data={this.state.chartData} options={options} height={150} width={350}></Radar>
+      <div className="container">
+        <div className="row">
+          {/* <Bar data={this.state.humanHistogram} height={50} width={200}></Bar> */}
+          {/* <Bar data={this.state.chartData} height={50} width={200}></Bar>
+          <Bar data={this.state.chartData} height={50} width={200}></Bar>
+          <Bar data={this.state.chartData} height={50} width={200}></Bar>
+          <Bar data={this.state.chartData} height={50} width={200}></Bar> */}
 
-        {/* <Line
-          data={this.state.chartData}
-          options={{
-            title:{
-              display:this.props.displayTitle,
-              text:'Largest Cities In '+this.props.location,
-              fontSize:25
-            },
-            legend:{
-              display:this.props.displayLegend,
-              position:this.props.legendPosition
-            }
-          }}
-        /> */}
+        </div>
+      </div>
       </div>
     )
   }

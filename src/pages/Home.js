@@ -20,7 +20,7 @@ class Home extends Component {
     $.ajax({
       url: urlString,
       success: (searchResults) => {
-        const results = searchResults.result
+        const results = searchResults.results
       
         var schoolRows = [];
         results.forEach((school) => {
