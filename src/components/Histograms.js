@@ -7,7 +7,7 @@ const options = {
     yAxes: [{
       barPercentage: 0.2,
       gridLines: {
-        display: true
+        display: false
       },
       ticks: {
         min: 300,
@@ -54,6 +54,14 @@ class Histograms extends Component{
       const histogramUrl = `https://enemstats-api.herokuapp.com/api/schools/year?name=${this.state.school.school_name}&state=${this.state.school.state}&city=${this.state.school.city}`
       const response = await fetch(histogramUrl);
       const histogramData = await response.json();
+
+      const stateUrl = `https://enemstats-api.herokuapp.com/api/states?state=${this.state.school.state}`;
+      const secondResponse = await fetch(stateUrl);
+      const secondData = await secondResponse.json();
+
+      // const natUrl = `https://enemstats-api.herokuapp.com/api/national`;
+      // const thirdResponse = await fetch(natUrl);
+      // const thirdData = await thirdResponse.json();
       
       var years = [];
       histogramData.results.forEach(element => {
@@ -63,6 +71,11 @@ class Histograms extends Component{
       var avgChs = [];
       histogramData.results.forEach(element => {
         avgChs.push(element.avg_ch);
+      });
+
+      var avgChsState = [];
+      secondData.results.forEach(element => {
+        avgChsState.push(element.avg_ch);
       });
 
       var avgNat = [];
@@ -84,7 +97,7 @@ class Histograms extends Component{
       histogramData.results.forEach(element => {
         avgEssay.push(element.avg_essay);
       });
-      // console.log(histogramData.results)
+
       this.setState({
         humHistogram:{
           labels: years,
@@ -94,6 +107,12 @@ class Histograms extends Component{
               backgroundColor: "rgba(51,204,51,0.2)",
               borderColor: "rgba(51,204,51,0.2)",
               data: avgChs
+            },
+            {
+              label: 'Média Estadual',
+              backgroundColor: "rgba(204,0,51,0.2)",
+              borderColor: "rgba(204,0,51,0.2)",
+              data: avgChsState
             }
           ]
         },
@@ -149,10 +168,16 @@ class Histograms extends Component{
         apisLoaded: true
       });
 
-      console.log("histograma")
-      console.log(this.state.mathHistogram)
+      // console.log("histograma")
+      // console.log(this.state.mathHistogram)
     }
   }
+
+  // async getStateNationAverage(){
+  //   const url = `https://enemstats-api.herokuapp.com/api/states?state=${this.state.school.state}&year=${this.state.school.year}`;
+  //   const response = await fetch(url);
+  //   const data = await response.json();
+  // }
   
   render(){
     if (!this.state.apisLoaded){
@@ -160,7 +185,7 @@ class Histograms extends Component{
     }
 
     return (
-      <div>
+      <div className="row">
         <Bar data={this.state.humHistogram} height={50} width={200} options={options}></Bar>
         <Bar data={this.state.natHistogram} height={50} width={200} options={options}></Bar>
         <Bar data={this.state.langHistogram} height={50} width={200} options={options}></Bar>

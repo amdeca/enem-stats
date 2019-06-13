@@ -12,9 +12,9 @@ const options = {
     reverse: false,
     ticks: {
       beginAtZero: true,
-      min: 450,
-      max: 800,
-      stepSize: 40
+      min: 400,
+      max: 850,
+      stepSize: 100
     },
     legend:{
       display: true,
@@ -42,17 +42,7 @@ class Chart extends Component{
   render(){
     return (
       <div>
-      <Radar data={this.state.chartData} options={options} height={150} width={350}></Radar>
-      <div className="container">
-        <div className="row">
-          {/* <Bar data={this.state.humanHistogram} height={50} width={200}></Bar> */}
-          {/* <Bar data={this.state.chartData} height={50} width={200}></Bar>
-          <Bar data={this.state.chartData} height={50} width={200}></Bar>
-          <Bar data={this.state.chartData} height={50} width={200}></Bar>
-          <Bar data={this.state.chartData} height={50} width={200}></Bar> */}
-
-        </div>
-      </div>
+      <Radar data={this.state.chartData} options={options} ></Radar>
       </div>
     )
   }

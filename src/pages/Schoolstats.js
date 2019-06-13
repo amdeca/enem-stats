@@ -21,24 +21,30 @@ export default class Schoolstats extends Component{
     //   // this.getState();
     // }
 
-    // WORK IN PROGRESS
-    // async getState(){
-    //   if(!this.state.loading){
-    //     const stateUrl = `https://enemstats-api.herokuapp.com/api/states?state=${this.state.school.state}&year=${this.state.school.year}`;
-    //     const response = await fetch(stateUrl);
-    //     const stateData = await response.json();
-    //     // console.log(stateData);
-    //   }
-    // }
-
     async getChartData(){
       // Ajax calls here
       const schoolId = window.location.pathname;
       const url = `https://enemstats-api.herokuapp.com/api${schoolId}`;
       const response = await fetch(url);
       const data = await response.json();
+
+      const school = data.results[0]
+      const stateUrl = `https://enemstats-api.herokuapp.com/api/states?state=${school.state}&year=${school.year}`;
+      const secondResponse = await fetch(stateUrl);
+      const secondData = await secondResponse.json();
+
+      const natUrl = `https://enemstats-api.herokuapp.com/api/national?year=${school.year}`;
+      const thirdResponse = await fetch(natUrl);
+      const thirdData = await thirdResponse.json();
+
+      // console.log(school)
+      // console.log("segunda requisicao")
+      // console.log(stateUrl)
+      // console.log("resposta")
+      console.log(secondData)
+
       this.setState({ 
-        school: data.results[0], 
+        school: data.results[0],
         loading: false,
         chartData:{
           labels: [
@@ -51,8 +57,8 @@ export default class Schoolstats extends Component{
           datasets:[
             {
               label:'Médias',
-              backgroundColor: "rgba(200,100,0,0.6)",
-              borderColor: "rgba(200,0,0,0.6)",
+              backgroundColor: "rgba(204,0,51,0.2)",
+              borderColor: "rgba(204,0,51,0.2)",
               // fill: true,
               radius: 4,
               pointBorderWidth: 2,
@@ -62,6 +68,38 @@ export default class Schoolstats extends Component{
                 data.results[0].avg_lc,
                 data.results[0].avg_mt,
                 data.results[0].avg_essay
+              ]
+            },
+
+            {
+              label:'Média Estadual',
+              backgroundColor: "rgba(51,0,204,0.4)",
+              borderColor: "rgba(51,0,204,0.4)",
+              // fill: true,
+              radius: 4,
+              pointBorderWidth: 2,
+              data:[
+                secondData.results[0].avg_ch,
+                secondData.results[0].avg_cn,
+                secondData.results[0].avg_lc,
+                secondData.results[0].avg_math,
+                secondData.results[0].avg_essay
+              ]
+            },
+
+            {
+              label:'Média Nacional',
+              backgroundColor: "rgba(204,0,51,0.4)",
+              borderColor: "rgba(204,0,51,0.4)",
+              // fill: true,
+              radius: 4,
+              pointBorderWidth: 2,
+              data:[
+                thirdData.results[0].avg_ch,
+                thirdData.results[0].avg_cn,
+                thirdData.results[0].avg_lc,
+                thirdData.results[0].avg_math,
+                thirdData.results[0].avg_essay
               ]
             }
           ]
@@ -79,7 +117,7 @@ export default class Schoolstats extends Component{
       }
 
       return(
-        <div>
+        <div className="container">
           <div className="school-info">
               <h3>{this.state.school.school_name}</h3>
               <h4>{this.state.school.city} - {this.state.school.state}</h4>
