@@ -58,44 +58,25 @@ class Histograms extends Component{
       const stateUrl = `https://enemstats-api.herokuapp.com/api/states?state=${this.state.school.state}`;
       const secondResponse = await fetch(stateUrl);
       const secondData = await secondResponse.json();
-
-      // const natUrl = `https://enemstats-api.herokuapp.com/api/national`;
-      // const thirdResponse = await fetch(natUrl);
-      // const thirdData = await thirdResponse.json();
       
-      var years = [];
+      var years = [], avgChs = [], avgNat = [], avgLang = [], avgMath = [], avgEssay = [];
+      var avgChsState = [], avgNatState = [], avgLangState = [], avgMathState = [], avgEssayState = [];
+
       histogramData.results.forEach(element => {
         years.push(element.year);
-      });
-
-      var avgChs = [];
-      histogramData.results.forEach(element => {
         avgChs.push(element.avg_ch);
+        avgNat.push(element.avg_cn);
+        avgLang.push(element.avg_lc);
+        avgMath.push(element.avg_math);
+        avgEssay.push(element.avg_essay);
       });
 
-      var avgChsState = [];
       secondData.results.forEach(element => {
         avgChsState.push(element.avg_ch);
-      });
-
-      var avgNat = [];
-      histogramData.results.forEach(element => {
-        avgNat.push(element.avg_cn);
-      });
-
-      var avgLang = [];
-      histogramData.results.forEach(element => {
-        avgLang.push(element.avg_lc);
-      });
-
-      var avgMath = [];
-      histogramData.results.forEach(element => {
-        avgMath.push(element.avg_math);
-      });
-
-      var avgEssay = [];
-      histogramData.results.forEach(element => {
-        avgEssay.push(element.avg_essay);
+        avgNatState.push(element.avg_cn);
+        avgLangState.push(element.avg_lc);
+        avgMathState.push(element.avg_math);
+        avgEssayState.push(element.avg_essay);
       });
 
       this.setState({
@@ -125,6 +106,12 @@ class Histograms extends Component{
               backgroundColor: "rgba(51,153,102,0.2)",
               borderColor: "rgba(51,153,102,0.2)",
               data: avgNat
+            },
+            {
+              label: 'Média Estadual',
+              backgroundColor: "rgba(204,0,51,0.2)",
+              borderColor: "rgba(204,0,51,0.2)",
+              data: avgNatState
             }
           ]
         },
@@ -137,6 +124,12 @@ class Histograms extends Component{
               backgroundColor: "rgba(51,102,153,0.2)",
               borderColor: "rgba(51,102,153,0.2)",
               data: avgLang
+            },
+            {
+              label: 'Média Estadual',
+              backgroundColor: "rgba(204,0,51,0.2)",
+              borderColor: "rgba(204,0,51,0.2)",
+              data: avgLangState
             }
           ]
         },
@@ -149,6 +142,12 @@ class Histograms extends Component{
               backgroundColor: "rgba(51,51,204,0.5)",
               borderColor: "rgba(51,51,204,0.5)",
               data: avgMath
+            },
+            {
+              label: 'Média Estadual',
+              backgroundColor: "rgba(204,0,51,0.2)",
+              borderColor: "rgba(204,0,51,0.2)",
+              data: avgMathState
             }
           ]
         },
@@ -161,6 +160,12 @@ class Histograms extends Component{
               backgroundColor: "rgba(102,0,204,0.4)",
               borderColor: "rgba(102,0,204,0.4)",
               data: avgEssay
+            },
+            {
+              label: 'Média Estadual',
+              backgroundColor: "rgba(204,0,51,0.2)",
+              borderColor: "rgba(204,0,51,0.2)",
+              data: avgEssayState
             }
           ]
         },
@@ -172,12 +177,6 @@ class Histograms extends Component{
       // console.log(this.state.mathHistogram)
     }
   }
-
-  // async getStateNationAverage(){
-  //   const url = `https://enemstats-api.herokuapp.com/api/states?state=${this.state.school.state}&year=${this.state.school.year}`;
-  //   const response = await fetch(url);
-  //   const data = await response.json();
-  // }
   
   render(){
     if (!this.state.apisLoaded){

@@ -76,9 +76,9 @@ class Home extends Component {
             </td>
             <td>
               <DropdownButton id="dropdown-basic-button" title="Ano" onChange={this.yearFilterHandler.bind(this)}>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                <Dropdown.Item>2012</Dropdown.Item>
+                <Dropdown.Item>2013</Dropdown.Item>
+                <Dropdown.Item>2014</Dropdown.Item>
               </DropdownButton>
             </td>
             {/* <td>
