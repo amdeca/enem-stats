@@ -12,7 +12,7 @@ class Navigation extends Component{
 
     render(){
         return (
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="white" expand="lg" id="navigation">
                 <Navbar.Brand>{this.state.school.school_name}</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="mr-auto">

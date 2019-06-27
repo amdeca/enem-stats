@@ -13,7 +13,7 @@ class SchoolRow extends Component{
     render(){
         return (
             <div key={this.props.school.id}>
-                <h4>{this.props.school.name}, {this.props.school.state}</h4>
+                <h4>{this.props.school.name}, {this.props.school.state} - {this.props.school.year}</h4>
                 <p>{this.props.school.type}</p>
 
                 <input type="button" onClick={this.schoolStats.bind(this)} value="Estatisticas"></input>

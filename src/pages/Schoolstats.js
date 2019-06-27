@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Chart from '../components/Chart';
 import Histograms from '../components/Histograms';
 import Navigation from '../components/Navigation';
+import './styles/Schoolstats.css';
 
 export default class Schoolstats extends Component{
     constructor(){
@@ -118,20 +119,21 @@ export default class Schoolstats extends Component{
       }
 
       return(
-        
-        <div className="container">
+        <div className="wrapper">
+          <div>
+            <Navigation school={this.state.school}/>
+          </div>
           
-        
-        
-          <Navigation school={this.state.school}/>
-          {/* <div className="school-info">
-              <h3>{this.state.school.school_name}</h3>
-              <h4>{this.state.school.city} - {this.state.school.state}</h4>
-              <p>{this.state.school.type}</p>
-              <h3>Estatisticas para o ano {this.state.school.year}</h3>
-          </div> */}
-          <Chart chartData={this.state.chartData}/>
-          <Histograms school={this.state.school}/>
+          <div className="container">
+            {/* <div className="school-info">
+                <h3>{this.state.school.school_name}</h3>
+                <h4>{this.state.school.city} - {this.state.school.state}</h4>
+                <p>{this.state.school.type}</p>
+                <h3>Estatisticas para o ano {this.state.school.year}</h3>
+            </div> */}
+            <Chart chartData={this.state.chartData}/>
+            <Histograms school={this.state.school}/>
+          </div>
         </div>
       );    
     }

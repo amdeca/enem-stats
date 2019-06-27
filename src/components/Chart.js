@@ -20,8 +20,8 @@ const options = {
       display: true,
       position:'left'
     },
-    maintainAspectRatio: false
-  }
+  },
+  maintainAspectRatio: false
 }
 
 class Chart extends Component{
@@ -41,8 +41,8 @@ class Chart extends Component{
 
   render(){
     return (
-      <div>
-      <Radar data={this.state.chartData} options={options} ></Radar>
+      <div className="radar-chart">
+      <Radar data={this.state.chartData} options={options} height={400} width={50}></Radar>
       </div>
     )
   }

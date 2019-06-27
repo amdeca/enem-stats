@@ -33,7 +33,10 @@ const options = {
       borderSkipped: 'left',
     }
   },
-  mantainAspectRatio: false
+  mantainAspectRatio: true,
+  chartArea: {
+    backgroundColor: 'rgba(0, 85, 85, 0.4)'
+  }
 }
 
 class Histograms extends Component{
@@ -184,12 +187,26 @@ class Histograms extends Component{
     }
 
     return (
-      <div className="row">
-        <Bar data={this.state.humHistogram} height={50} width={200} options={options}></Bar>
-        <Bar data={this.state.natHistogram} height={50} width={200} options={options}></Bar>
-        <Bar data={this.state.langHistogram} height={50} width={200} options={options}></Bar>
-        <Bar data={this.state.mathHistogram} height={50} width={200} options={options}></Bar>
-        <Bar data={this.state.essayHistogram} height={50} width={200} options={options}></Bar>
+      <div className="histograms">
+        <div className="histogram">
+          <Bar data={this.state.humHistogram} height={50} width={200} options={options}></Bar>
+        </div>
+        
+        <div className="histogram">
+          <Bar data={this.state.natHistogram} height={50} width={200} options={options}></Bar>
+        </div>
+
+        <div className="histogram">
+          <Bar data={this.state.langHistogram} height={50} width={200} options={options}></Bar>
+        </div>
+
+        <div className="histogram">
+          <Bar data={this.state.mathHistogram} height={50} width={200} options={options}></Bar>
+        </div>
+
+        <div className="histogram">
+          <Bar data={this.state.essayHistogram} height={50} width={200} options={options}></Bar>
+        </div>
       </div>
     )
   }
