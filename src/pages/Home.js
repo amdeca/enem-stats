@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './styles/Home.css';
 import SchoolRow from '../components/SchoolRow.js';
 import $ from 'jquery';
-// import Dropdown from 'react-bootstrap/Dropdown';
-// import DropdownButton from 'react-bootstrap/DropdownButton';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 class Home extends Component {
   constructor(props) {
@@ -15,8 +14,6 @@ class Home extends Component {
   }
 
   searchSchool(searchTerm, searchYear){
-    // DEBUG
-    // var searchYear = 2017;
     var searchYear = this.state.currentYear;
     const urlString = `https://enemstats-api.herokuapp.com/api/schools?q=${searchTerm}&year=${searchYear}`;
     $.ajax({
@@ -58,28 +55,23 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <table className="title-bar">
-          <tbody>
-            <tr>
-              <td>
-                <h3>Enemviz</h3>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <nav className="title-bar">
+          <h3>Enemstats</h3>
+          {/* <a href="/about">Sobre</a> */}
+        </nav>
 
-        <div className="search-bar">
-          <tr>
-            <td>
-              <input className="school-search" placeholder="Buscar Escola" onChange={this.searchChangeHandler.bind(this)}/>
-            </td>
-            <td>
-              {/* <DropdownButton id="dropdown-basic-button" title="Ano" onChange={ (e) => {this.yearFilterHandler();}}>
-                <Dropdown.Item>2012</Dropdown.Item>
-                <Dropdown.Item>2013</Dropdown.Item>
-                <Dropdown.Item>2014</Dropdown.Item>
-              </DropdownButton> */}
-              
+
+        <Jumbotron className="text-center" id="jumbo">
+          <h1>Bem vindo ao Enemstats</h1>
+          <p>
+            Veja as notas de todas as escolas do Brasil
+          </p>
+        </Jumbotron>
+
+        {/* Results listing */}
+        <div id="results-body">
+          <div className="search-bar">
+            <input className="school-search" placeholder="Buscar Escola" onChange={this.searchChangeHandler.bind(this)}/>               
               <select ref="yearSelector" value={this.state.currentYear} onChange={ (e) => { this.yearFilterHandler(); } }>
                 <option value={2017}>2017</option>
                 <option value={2016}>2016</option>            
@@ -91,14 +83,13 @@ class Home extends Component {
                 <option value={2010}>2010</option>
                 <option value={2009}>2009</option>
               </select>
-            </td>
-          </tr>
+          </div>
+          
+          <div id="result-div" className="text-center">
+            {this.state.rows}
+          </div>
         </div>
-
-        {/* exibiçao dos resultados */}
-        <div id="result-div">
-          {this.state.rows}
-        </div>
+        
       </div>
     );
   }
