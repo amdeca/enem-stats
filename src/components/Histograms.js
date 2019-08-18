@@ -11,8 +11,8 @@ const options = {
       },
       ticks: {
         min: 300,
-        max: 850,
-        stepSize: 50
+        max: 900,
+        stepSize: 300
       },
       // scaleLabel: {
       //   display: true,
@@ -24,8 +24,6 @@ const options = {
         zeroLineColor: "black",
         zeroLineWidth: 2
       },
-      
-      
     }]
   },
   elements: {
@@ -33,7 +31,7 @@ const options = {
       borderSkipped: 'left',
     }
   },
-  mantainAspectRatio: true,
+  mantainAspectRatio: false,
   chartArea: {
     backgroundColor: 'rgba(0, 85, 85, 0.4)'
   }
@@ -88,14 +86,14 @@ class Histograms extends Component{
           datasets:[
             {
               label: 'Ciencias Humanas',
-              backgroundColor: "rgba(51,204,51,0.2)",
-              borderColor: "rgba(51,204,51,0.2)",
+              backgroundColor: "rgb(51,166,204)",
+              borderColor: "rgb(51,166,204)",
               data: avgChs
             },
             {
               label: 'Média Estadual',
-              backgroundColor: "rgba(204,0,51,0.2)",
-              borderColor: "rgba(204,0,51,0.2)",
+              backgroundColor: "rgb(51,90,204)",
+              borderColor: "rgb(51,90,204)",
               data: avgChsState
             }
           ]
@@ -106,14 +104,14 @@ class Histograms extends Component{
           datasets:[
             {
               label: 'Ciencias Naturais',
-              backgroundColor: "rgba(51,153,102,0.2)",
-              borderColor: "rgba(51,153,102,0.2)",
+              backgroundColor: "rgb(204,51,90)",
+              borderColor: "rgb(204,51,90)",
               data: avgNat
             },
             {
               label: 'Média Estadual',
-              backgroundColor: "rgba(204,0,51,0.2)",
-              borderColor: "rgba(204,0,51,0.2)",
+              backgroundColor: "rgb(204,51,166)",
+              borderColor: "rgb(204,51,166)",
               data: avgNatState
             }
           ]
@@ -124,14 +122,14 @@ class Histograms extends Component{
           datasets:[
             {
               label: 'Linguagens',
-              backgroundColor: "rgba(51,102,153,0.2)",
-              borderColor: "rgba(51,102,153,0.2)",
+              backgroundColor: "rgb(51,204,127)",
+              borderColor: "rgb(51,204,127)",
               data: avgLang
             },
             {
               label: 'Média Estadual',
-              backgroundColor: "rgba(204,0,51,0.2)",
-              borderColor: "rgba(204,0,51,0.2)",
+              backgroundColor: "rgb(112,219,192)",
+              borderColor: "rgb(112,219,192)",
               data: avgLangState
             }
           ]
@@ -142,14 +140,14 @@ class Histograms extends Component{
           datasets:[
             {
               label: 'Matematica',
-              backgroundColor: "rgba(51,51,204,0.5)",
-              borderColor: "rgba(51,51,204,0.5)",
+              backgroundColor: "rgb(235,174,67)",
+              borderColor: "rgb(235,174,67)",
               data: avgMath
             },
             {
               label: 'Média Estadual',
-              backgroundColor: "rgba(204,0,51,0.2)",
-              borderColor: "rgba(204,0,51,0.2)",
+              backgroundColor: "rgb(235,230,67)",
+              borderColor: "rgb(235,230,67)",
               data: avgMathState
             }
           ]
@@ -160,14 +158,14 @@ class Histograms extends Component{
           datasets:[
             {
               label: 'Redacao',
-              backgroundColor: "rgba(102,0,204,0.4)",
-              borderColor: "rgba(102,0,204,0.4)",
+              backgroundColor: "rgb(132,67,235)",
+              borderColor: "rgb(132,67,235)",
               data: avgEssay
             },
             {
               label: 'Média Estadual',
-              backgroundColor: "rgba(204,0,51,0.2)",
-              borderColor: "rgba(204,0,51,0.2)",
+              backgroundColor: "rgb(216,67,235)",
+              borderColor: "rgb(216,67,235)",
               data: avgEssayState
             }
           ]
@@ -175,9 +173,6 @@ class Histograms extends Component{
         
         apisLoaded: true
       });
-
-      // console.log("histograma")
-      // console.log(this.state.mathHistogram)
     }
   }
   
@@ -189,23 +184,23 @@ class Histograms extends Component{
     return (
       <div className="histograms">
         <div className="histogram">
-          <Bar data={this.state.humHistogram} height={50} width={200} options={options}></Bar>
+          <Bar data={this.state.humHistogram} height={80} width={200} options={options}></Bar>
         </div>
         
         <div className="histogram">
-          <Bar data={this.state.natHistogram} height={50} width={200} options={options}></Bar>
+          <Bar data={this.state.natHistogram} height={80} width={200} options={options}></Bar>
         </div>
 
         <div className="histogram">
-          <Bar data={this.state.langHistogram} height={50} width={200} options={options}></Bar>
+          <Bar data={this.state.langHistogram} height={80} width={200} options={options}></Bar>
         </div>
 
         <div className="histogram">
-          <Bar data={this.state.mathHistogram} height={50} width={200} options={options}></Bar>
+          <Bar data={this.state.mathHistogram} height={80} width={200} options={options}></Bar>
         </div>
 
         <div className="histogram">
-          <Bar data={this.state.essayHistogram} height={50} width={200} options={options}></Bar>
+          <Bar data={this.state.essayHistogram} height={80} width={200} options={options}></Bar>
         </div>
       </div>
     )

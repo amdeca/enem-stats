@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import Chart from '../components/Chart';
 import Histograms from '../components/Histograms';
-import Navigation from '../components/Navigation';
+// import Navigation from '../components/Navigation';
 import './styles/Schoolstats.css';
+import t from 'fronto-localize';
+
+//Material UI
+import Container from '@material-ui/core/Container'
 
 export default class Schoolstats extends Component{
     constructor(){
@@ -43,7 +47,7 @@ export default class Schoolstats extends Component{
       // console.log("segunda requisicao")
       // console.log(stateUrl)
       // console.log("resposta")
-      console.log(secondData)
+      // console.log(secondData)
 
       this.setState({ 
         school: data.results[0],
@@ -59,9 +63,8 @@ export default class Schoolstats extends Component{
           datasets:[
             {
               label:'Médias',
-              backgroundColor: "rgba(204,0,51,0.2)",
-              borderColor: "rgba(204,0,51,0.2)",
-              // fill: true,
+              backgroundColor: "rgba(179, 204, 255,0.3)",
+              borderColor: "rgba(179, 204, 255,0.9)",
               radius: 4,
               pointBorderWidth: 2,
               data:[
@@ -75,8 +78,8 @@ export default class Schoolstats extends Component{
 
             {
               label:'Média Estadual',
-              backgroundColor: "rgba(51,0,204,0.4)",
-              borderColor: "rgba(51,0,204,0.4)",
+              backgroundColor: "rgba(51, 119, 255, 0.3)",
+              borderColor: "rgba(51, 119, 255, 0.9)",
               // fill: true,
               radius: 4,
               pointBorderWidth: 2,
@@ -91,8 +94,8 @@ export default class Schoolstats extends Component{
 
             {
               label:'Média Nacional',
-              backgroundColor: "rgba(204,0,51,0.4)",
-              borderColor: "rgba(204,0,51,0.4)",
+              backgroundColor: "rgba(0, 43, 128, 0.4)",
+              borderColor: "rgba(0, 43, 128, 0.9)",
               // fill: true,
               radius: 4,
               pointBorderWidth: 2,
@@ -120,20 +123,17 @@ export default class Schoolstats extends Component{
 
       return(
         <div className="wrapper">
-          <div>
-            <Navigation school={this.state.school}/>
-          </div>
-          
-          <div className="container">
-            {/* <div className="school-info">
+          {/* <Navigation school={this.state.school}/> */}
+          <Container >            
+            <div className="school-info">
                 <h3>{this.state.school.school_name}</h3>
                 <h4>{this.state.school.city} - {this.state.school.state}</h4>
                 <p>{this.state.school.type}</p>
                 <h3>Estatisticas para o ano {this.state.school.year}</h3>
-            </div> */}
+            </div>
             <Chart chartData={this.state.chartData}/>
             <Histograms school={this.state.school}/>
-          </div>
+          </Container>
         </div>
       );    
     }

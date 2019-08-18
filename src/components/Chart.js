@@ -14,7 +14,7 @@ const options = {
       beginAtZero: true,
       min: 400,
       max: 850,
-      stepSize: 100
+      stepSize: 150
     },
     legend:{
       display: true,
@@ -35,7 +35,7 @@ class Chart extends Component{
   render(){
     return (
       <div className="radar-chart">
-      <Radar data={this.state.chartData} options={options} height={400} width={50}></Radar>
+      <Radar data={this.state.chartData} options={options} height={400} width={150}></Radar>
       </div>
     )
   }
