@@ -4,14 +4,9 @@ import Histograms from '../components/Histograms';
 // import Navigation from '../components/Navigation';
 import './styles/Schoolstats.css';
 import t from 'fronto-localize';
-//Material UI
-import { Paper } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 
-//Styles
-const style = {
-  Paper: {padding: 20, marginTop: 10, marginBottom: 10 }
-}
+//Material UI
+import Container from '@material-ui/core/Container'
 
 export default class Schoolstats extends Component{
     constructor(){
@@ -128,18 +123,17 @@ export default class Schoolstats extends Component{
 
       return(
         <div className="wrapper">
-          <Grid container direction="column" justify="space-evenly" alignItems="stretch">
-            <Grid item xs={8} sm={10} md={10} lg={12}>
-              <Paper style={style.Paper}>
+          {/* <Navigation school={this.state.school}/> */}
+          <Container >            
+            <div className="school-info">
                 <h3>{this.state.school.school_name}</h3>
                 <h4>{this.state.school.city} - {this.state.school.state}</h4>
                 <p>{this.state.school.type}</p>
                 <h3>Estatisticas para o ano {this.state.school.year}</h3>
-              </Paper>
-              <Chart chartData={this.state.chartData}/>
-              <Histograms school={this.state.school}/>
-            </Grid>
-          </Grid>
+            </div>
+            <Chart chartData={this.state.chartData}/>
+            <Histograms school={this.state.school}/>
+          </Container>
         </div>
       );    
     }

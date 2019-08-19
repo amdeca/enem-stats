@@ -6,12 +6,9 @@ import SchoolRow from '../components/SchoolRow.js';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { Container, Paper } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
-const style = {
-  Paper: {padding: 20, marginTop: 10, marginBottom: 10 }
-}
 
 class Home extends Component {
   constructor(props) {
@@ -58,51 +55,33 @@ class Home extends Component {
 
   render() {
     return (
-      <Grid container direction="column" justify="space-evenly" alignItems="stretch">
-        <Grid item xs={6} sm={10} md={12} lg={12}>
-          <Paper style={style.Paper}>
-            <TextField
-              id="standard-full-width"
-              style={{ margin: 8 }}
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              className="school-search"
-              onChange={this.searchChangeHandler.bind(this)}
-            />
+      <Grid container>
+        <TextField
+          id="standard-full-width"
+          style={{ margin: 8 }}
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          className="school-search"
+          onChange={this.searchChangeHandler.bind(this)}
+        />
 
-            <select ref="yearSelector" value={this.state.currentYear} onChange={ (e) => { this.yearFilterHandler(); } }>
-              <option value={2017}>2017</option>
-              <option value={2016}>2016</option>            
-              <option value={2015}>2015</option>
-              <option value={2014}>2014</option>
-              <option value={2013}>2013</option>
-              <option value={2012}>2012</option>
-              <option value={2011}>2011</option>
-              <option value={2010}>2010</option>
-              <option value={2009}>2009</option>
-            </select>
-          </Paper>
-
-        {/* <Grid item xs={6} sm={6} md={12}> */}
-          {this.state.rows}
-        {/* </Grid>  */}
-        </Grid>
-
-      </Grid>   
-
-      /* <TextField
-        id="standard-full-width"
-        style={{ margin: 8 }}
-        margin="normal"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        className="school-search"
-        onChange={this.searchChangeHandler.bind(this)}
-      /> */
-
+        <select ref="yearSelector" value={this.state.currentYear} onChange={ (e) => { this.yearFilterHandler(); } }>
+          <option value={2017}>2017</option>
+          <option value={2016}>2016</option>            
+          <option value={2015}>2015</option>
+          <option value={2014}>2014</option>
+          <option value={2013}>2013</option>
+          <option value={2012}>2012</option>
+          <option value={2011}>2011</option>
+          <option value={2010}>2010</option>
+          <option value={2009}>2009</option>
+        </select>
+        
+        {this.state.rows}      
+        
+    </Grid>   
       // OLD CODE
       // <div className="Home">
       //   <nav className="title-bar">

@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 //Material UI
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
+import { Paper } from '@material-ui/core';
+//Localization
 import t from '../languages/locale';
 
-const styles = {
-    card: {
-        display: 'flex'
-    }
+//Styles
+const style = {
+    Paper: {padding: 20, marginTop: 10, marginBottom: 10 }
 }
 
 class SchoolRow extends Component{
@@ -21,11 +20,11 @@ class SchoolRow extends Component{
     
     render(){
         return (
-            <Card>
+            <Paper style={style.Paper}>
                 <CardContent>
-                    <Typography variant="h5">{this.props.school.name}</Typography>
-                    <Typography variant="h6">{this.props.school.state} - {this.props.school.year}</Typography>
-                    <Typography variant="h6">{this.props.school.type}</Typography>
+                    <Typography variant="h6">{this.props.school.name}</Typography>
+                    <Typography variant="subtitle1">{this.props.school.state} - {this.props.school.year}</Typography>
+                    <Typography variant="caption">{this.props.school.type}</Typography>
                 </CardContent>
                 <Button 
                 variant="contained" 
@@ -34,7 +33,8 @@ class SchoolRow extends Component{
                 color="primary">
                 {t('statistics')}
                 </Button>
-            </Card>
+            </Paper>
+            
             // <div key={this.props.school.id}>
             //     <h5>{this.props.school.name}</h5>
             //     <h5>{this.props.school.state} - {this.props.school.year}</h5>
