@@ -3,7 +3,7 @@ import {Radar} from 'react-chartjs-2';
 
 // Default chart parameters
 const options = {
-  
+  responsive: true,
   legend: {
     display: true,
     position: 'top'
@@ -16,10 +16,7 @@ const options = {
       max: 850,
       stepSize: 150
     },
-    legend:{
-      display: true,
-      position:'left'
-    },
+    
   },
   maintainAspectRatio: false
 }

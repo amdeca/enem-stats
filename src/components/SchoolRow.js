@@ -4,12 +4,14 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Paper } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+
 //Localization
 import t from '../languages/locale';
 
 //Styles
 const style = {
-    Paper: {padding: 20, marginTop: 10, marginBottom: 10 }
+    Paper: {padding: 20, marginTop: 10, marginBottom: 10}
 }
 
 class SchoolRow extends Component{
@@ -23,9 +25,10 @@ class SchoolRow extends Component{
             <Paper style={style.Paper}>
                 <CardContent>
                     <Typography variant="h6">{this.props.school.name}</Typography>
-                    <Typography variant="subtitle1">{this.props.school.state} - {this.props.school.year}</Typography>
-                    <Typography variant="caption">{this.props.school.type}</Typography>
+                    <Typography variant="subtitle1">{this.props.school.city}, {this.props.school.state}</Typography>
+                    <Typography variant="caption">{t(String(this.props.school.type))}</Typography>
                 </CardContent>
+
                 <Button 
                 variant="contained" 
                 onClick={this.schoolStats.bind(this)} 

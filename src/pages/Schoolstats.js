@@ -3,10 +3,11 @@ import Chart from '../components/Chart';
 import Histograms from '../components/Histograms';
 // import Navigation from '../components/Navigation';
 import './styles/Schoolstats.css';
-import t from 'fronto-localize';
 //Material UI
 import { Paper } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+//Localize
+import t from '../languages/locale';
 
 //Styles
 const style = {
@@ -48,26 +49,20 @@ export default class Schoolstats extends Component{
       const thirdResponse = await fetch(natUrl);
       const thirdData = await thirdResponse.json();
 
-      // console.log(school)
-      // console.log("segunda requisicao")
-      // console.log(stateUrl)
-      // console.log("resposta")
-      // console.log(secondData)
-
       this.setState({ 
         school: data.results[0],
         loading: false,
         chartData:{
           labels: [
-            'Ciências Humanas', 
-            'Ciências Naturais', 
-            'Linguagens', 
-            'Matemática', 
-            'Redação'
+            t('humanSciences'), 
+            t('natSciences'), 
+            t('languages'), 
+            t('math'), 
+            t('essay')
           ],
           datasets:[
             {
-              label:'Médias',
+              label:t('averages'),
               backgroundColor: "rgba(179, 204, 255,0.3)",
               borderColor: "rgba(179, 204, 255,0.9)",
               radius: 4,
@@ -82,7 +77,7 @@ export default class Schoolstats extends Component{
             },
 
             {
-              label:'Média Estadual',
+              label: t('stateAverages'),
               backgroundColor: "rgba(51, 119, 255, 0.3)",
               borderColor: "rgba(51, 119, 255, 0.9)",
               // fill: true,
@@ -98,7 +93,7 @@ export default class Schoolstats extends Component{
             },
 
             {
-              label:'Média Nacional',
+              label:t('nationalAverages'),
               backgroundColor: "rgba(0, 43, 128, 0.4)",
               borderColor: "rgba(0, 43, 128, 0.9)",
               // fill: true,
@@ -131,10 +126,12 @@ export default class Schoolstats extends Component{
           <Grid container direction="column" justify="space-evenly" alignItems="stretch">
             <Grid item xs={8} sm={10} md={10} lg={12}>
               <Paper style={style.Paper}>
+
                 <h3>{this.state.school.school_name}</h3>
-                <h4>{this.state.school.city} - {this.state.school.state}</h4>
-                <p>{this.state.school.type}</p>
-                <h3>Estatisticas para o ano {this.state.school.year}</h3>
+                <h4>{this.state.school.city}, {this.state.school.state}</h4>                
+                <h5>{ t(String(this.state.school.type))}</h5>
+                <h5>{t('year') + " " + this.state.school.year}</h5>
+
               </Paper>
               <Chart chartData={this.state.chartData}/>
               <Histograms school={this.state.school}/>

@@ -3,7 +3,6 @@ import Chart from '../components/Chart';
 import Histograms from '../components/Histograms';
 // import Navigation from '../components/Navigation';
 import './styles/Schoolstats.css';
-import t from 'fronto-localize';
 
 //Material UI
 import Container from '@material-ui/core/Container'
@@ -42,12 +41,6 @@ export default class Schoolstats extends Component{
       const natUrl = `https://enemstats-api.herokuapp.com/api/national?year=${school.year}`;
       const thirdResponse = await fetch(natUrl);
       const thirdData = await thirdResponse.json();
-
-      // console.log(school)
-      // console.log("segunda requisicao")
-      // console.log(stateUrl)
-      // console.log("resposta")
-      // console.log(secondData)
 
       this.setState({ 
         school: data.results[0],
@@ -123,7 +116,6 @@ export default class Schoolstats extends Component{
 
       return(
         <div className="wrapper">
-          {/* <Navigation school={this.state.school}/> */}
           <Container >            
             <div className="school-info">
                 <h3>{this.state.school.school_name}</h3>

@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {Bar} from 'react-chartjs-2';
+//Localization
+import t from '../languages/locale';
+
 
 // Default chart parameters
 const options = {
+  responsive: true,
   scales: {
     yAxes: [{
       barPercentage: 0.2,
@@ -31,7 +35,7 @@ const options = {
       borderSkipped: 'left',
     }
   },
-  mantainAspectRatio: false,
+  mantainAspectRatio: true,
   chartArea: {
     backgroundColor: 'rgba(0, 85, 85, 0.4)'
   }
@@ -85,13 +89,13 @@ class Histograms extends Component{
           labels: years,
           datasets:[
             {
-              label: 'Ciencias Humanas',
+              label: t('humanSciences'),
               backgroundColor: "rgb(51,166,204)",
               borderColor: "rgb(51,166,204)",
               data: avgChs
             },
             {
-              label: 'Média Estadual',
+              label: t('stateAverages'),
               backgroundColor: "rgb(51,90,204)",
               borderColor: "rgb(51,90,204)",
               data: avgChsState
@@ -103,13 +107,13 @@ class Histograms extends Component{
           labels: years,
           datasets:[
             {
-              label: 'Ciencias Naturais',
+              label: t('natSciences'),
               backgroundColor: "rgb(204,51,90)",
               borderColor: "rgb(204,51,90)",
               data: avgNat
             },
             {
-              label: 'Média Estadual',
+              label: t('stateAverages'),
               backgroundColor: "rgb(204,51,166)",
               borderColor: "rgb(204,51,166)",
               data: avgNatState
@@ -121,13 +125,13 @@ class Histograms extends Component{
           labels: years,
           datasets:[
             {
-              label: 'Linguagens',
+              label: t('languages'),
               backgroundColor: "rgb(51,204,127)",
               borderColor: "rgb(51,204,127)",
               data: avgLang
             },
             {
-              label: 'Média Estadual',
+              label: t('stateAverages'),
               backgroundColor: "rgb(112,219,192)",
               borderColor: "rgb(112,219,192)",
               data: avgLangState
@@ -139,13 +143,13 @@ class Histograms extends Component{
           labels: years,
           datasets:[
             {
-              label: 'Matematica',
+              label: t('math'),
               backgroundColor: "rgb(235,174,67)",
               borderColor: "rgb(235,174,67)",
               data: avgMath
             },
             {
-              label: 'Média Estadual',
+              label: t('stateAverages'),
               backgroundColor: "rgb(235,230,67)",
               borderColor: "rgb(235,230,67)",
               data: avgMathState
@@ -157,13 +161,13 @@ class Histograms extends Component{
           labels: years,
           datasets:[
             {
-              label: 'Redacao',
+              label: t('essay'),
               backgroundColor: "rgb(132,67,235)",
               borderColor: "rgb(132,67,235)",
               data: avgEssay
             },
             {
-              label: 'Média Estadual',
+              label: t('stateAverages'),
               backgroundColor: "rgb(216,67,235)",
               borderColor: "rgb(216,67,235)",
               data: avgEssayState
